@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Calendar Invite Generator</title>
+  </head>
+  <body>
+    <h1>Generate Calendar Invite</h1>
+    <form id="inviteForm">
+      <label for="title">Title:</label>
+      <input type="text" id="title" required /><br />
+      <label for="description">Description:</label>
+      <input type="text" id="description" required /><br />
+      <label for="location">Location:</label>
+      <input type="text" id="location" required /><br />
+      <label for="startDate">Start Date:</label>
+      <input type="date" id="startDate" required /><br />
+      <label for="startTime">Start Time:</label>
+      <input type="time" id="startTime" required /><br />
+      <label for="endDate">End Date:</label>
+      <input type="date" id="endDate" required /><br />
+      <label for="endTime">End Time:</label>
+      <input type="time" id="endTime" required /><br />
+      <button type="button" onclick="generateInvite()">
+        Generate Invite URL
+      </button>
+    </form>
+    <p id="result"></p>
+
+    <script>
+      function generateInvite() {
+        const title = document.getElementById("title").value;
+        const description = document.getElementById("description").value;
+        const location = document.getElementById("location").value;
+        const startDate = document.getElementById("startDate").value;
+        const startTime = document.getElementById("startTime").value;
+        const endDate = document.getElementById("endDate").value;
+        const endTime = document.getElementById("endTime").value;
+
+        // Encode the parameters for the URL
+        const encodedTitle = encodeURIComponent(title);
+        const encodedDescription = encodeURIComponent(description);
+        const encodedLocation = encodeURIComponent(location);
+        const encodedStartDate = encodeURIComponent(startDate);
+        const encodedStartTime = encodeURIComponent(startTime);
+        const encodedEndDate = encodeURIComponent(endDate);
+        const encodedEndTime = encodeURIComponent(endTime);
+
+        // Construct the URL with the encoded parameters
+        const url = `https://example.com/calendar?title=${encodedTitle}&description=${encodedDescription}&location=${encodedLocation}&start=${encodedStartDate}T${encodedStartTime}&end=${encodedEndDate}T${encodedEndTime}`;
+
+        // Display the URL
+        document.getElementById("result").textContent = `Generated URL: ${url}`;
+      }
+    </script>
+  </body>
+</html>
